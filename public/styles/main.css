@@ -1,0 +1,169 @@
+/* ----------------------------------------------------------------- */
+/* Reset */
+/* ----------------------------------------------------------------- */
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* ----------------------------------------------------------------- */
+/* Base */
+/* ----------------------------------------------------------------- */
+body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    color: #161616;
+    font-size: 20px;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 22px;
+    color: #fff;
+}
+
+/* ----------------------------------------------------------------- */
+/* Content */
+/* ----------------------------------------------------------------- */
+
+.content {
+    min-height: 1090px;
+}
+
+/* ----------------------------------------------------------------- */
+/* Shell */
+/* ----------------------------------------------------------------- */
+.shell {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.shell--small {
+    max-width: 800px;
+}
+
+/* ----------------------------------------------------------------- */
+/* Buttons */
+/* ----------------------------------------------------------------- */
+.btn {
+    color: #fff;
+    text-decoration: none;
+    width: 100px;
+    height: 40px;
+    text-transform: uppercase;
+    border-radius: 10px;
+}
+
+.btn--blue {
+    border: 1px solid #00aaff;
+    background-color: #00aaff;
+    transition: background-color .2s, border-color .2s;
+    cursor: pointer;
+}
+
+.btn--blue:hover {
+    background-color: #5ac8ff;
+    border-color: #5ac8ff;
+}
+
+.btn--red {
+    border: 1px solid #ef0000;
+    background-color: #ef0000;
+    transition: background-color .2s, border-color .2s;
+    cursor: pointer;
+}
+
+.btn--red:hover {
+    background-color: #ff5252;
+    border-color: #ff5252;
+}
+
+.btn--height-40 {
+    height: 40px;
+}
+
+.btn--width-250 {
+    width: 250px;
+}
+
+.btn--lowercase {
+    text-transform: capitalize;
+}
+
+.btn--transparent {
+    border: 1px solid #000;
+    background-color: transparent;
+    transition: color .2s, border-color .2s;
+    cursor: pointer;
+    color: #000;
+}
+
+.btn--transparent:hover {
+    transition: color .2s, border-color .2s;
+    color: #00aaff;
+    border: 1px solid #00aaff;
+}
+
+/* ----------------------------------------------------------------- */
+/* Grid */
+/* ----------------------------------------------------------------- */
+.grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin: 0 -20px;
+}
+
+.grid .grid__col {
+    max-width: 100%;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 0 20px;
+}
+
+.grid .grid__col--1of3 {
+    max-width: calc(100% / 3);
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 calc(100% / 3);
+    flex: 0 0 calc(100% / 3);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.grid .grid__col--1of4 {
+    max-width: 25%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.grid-no-gutter {
+    margin: 0;
+}

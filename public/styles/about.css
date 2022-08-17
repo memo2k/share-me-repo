@@ -1,0 +1,30 @@
+/* ----------------------------------------------------------------- */
+/* Section About */
+/* ----------------------------------------------------------------- */
+.section-about {
+    padding: 80px 0;
+    letter-spacing: 1px;
+    line-height: 36px;
+  }
+  
+  .section-about h2 {
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    position: relative;
+  }
+  
+  .section-about h2:after {
+    position: absolute;
+    content: '';
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background-color: #00aaff;
+  }
+  
+  .section-about .section__content {
+    margin-top: 100px;
+  }
+  

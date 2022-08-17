@@ -1,0 +1,49 @@
+/* ----------------------------------------------------------------- */
+/* Section Profile */
+/* ----------------------------------------------------------------- */
+.section-profile {
+    padding: 80px 0;
+  }
+  
+  .section-profile .section__content {
+    background-color: #fff;
+    padding: 40px 60px;
+  }
+
+  .section-profile h4 {
+    color: #000;
+  }
+  
+  .section-profile .section__btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  
+  .section-profile .section__info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 60px;
+  }
+  
+  .section-profile .section__actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  .section-profile .section__btn + .section__btn {
+    margin-left: 15px;
+  }
+  
+  .section-profile .section__details {
+    margin-left: 20px;
+  }
+  
