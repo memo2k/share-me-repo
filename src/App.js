@@ -1,5 +1,8 @@
-//import { Counter } from './features/counter/Counter';
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useEffect } from 'react';
+import { auth } from './firebase';
+import { login, logout } from './features/userSlice';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -11,6 +14,22 @@ import Create from './components/Create/Create';
 import Profile from './components/Profile/Profile';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged(userAuth => {
+      if (userAuth) {
+        dispatch(login({
+          email: userAuth.email,
+          uid: userAuth.uid,
+          displayName: userAuth.displayName
+        }))
+      } else {
+        dispatch(logout())
+      }
+    })
+  }, [])
+
   return (
     <div className="wrapper">
       <Header />

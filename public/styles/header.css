@@ -2,6 +2,7 @@
 /* Header */
 /* ----------------------------------------------------------------- */
 .header {
+    position: fixed;
     z-index: 1;
     width: 100%;
     border-bottom: 0.1px solid lightgray;

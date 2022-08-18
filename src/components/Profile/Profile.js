@@ -1,4 +1,10 @@
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
+
 const Profile = () => {
+    const user = useSelector(selectUser);
+
     return (
         <div className="section-profile">
             <div className="shell shell--small">
@@ -9,17 +15,17 @@ const Profile = () => {
                         </div>
 
                         <div className="section__details">
-                            <h4>Name: Pesho</h4>
+                            <h2>Name: {user.displayName}</h2>
 
-                            <h4>Email: pesho@abv.bg</h4>
+                            <h3>Email: {user.email}</h3>
                         </div>
                     </div>
 
 
                     <div className="section__actions">
-                        <a href="#" className="btn btn--transparent btn--lowercase section__btn btn--width-250">Edit</a>
+                        <Link to="/edit" className="btn btn--transparent btn--lowercase section__btn btn--width-250">Edit</Link>
 
-                        <a href="#" className="btn btn--red btn--lowercase section__btn btn--width-250">Delete Account</a>
+                        <Link to="/delete" className="btn btn--red btn--lowercase section__btn btn--width-250">Delete Account</Link>
                     </div>
                 </div>
             </div>

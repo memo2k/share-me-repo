@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
+import Home from '../../components/Home/Home';
+import { logout, selectUser } from "../../features/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { auth } from "../../firebase";
 
 const Header = () => {
+    const user = useSelector(selectUser);
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        auth.signOut();
+    }
+
     return (
         <header className="header">
             <div className="shell">
@@ -11,7 +23,22 @@ const Header = () => {
 
                     <div className="header__nav">
                          <nav className="nav">
+                            {user ? (
                              <ul>
+                                 <li>
+                                     <Link to="/">Feed</Link>
+                                 </li>
+
+                                 <li>
+                                     <Link to="/about">About Us</Link>
+                                 </li>
+
+                                 <li>
+                                     <Link onClick={handleLogout} to="/">Logout</Link>
+                                 </li>
+                             </ul>) :
+                             (
+                                <ul>
                                  <li>
                                      <Link to="/">Feed</Link>
                                  </li>
@@ -27,7 +54,8 @@ const Header = () => {
                                  <li>
                                      <Link to="/register">Register</Link>
                                  </li>
-                             </ul>
+                             </ul> 
+                             )}
                          </nav>
                      </div>
                 </div>

@@ -10,8 +10,12 @@
     padding: 40px 60px;
   }
 
-  .section-profile h4 {
-    color: #000;
+  .section-profile h2 {
+    color: rgb(50, 50, 50);
+  }
+
+  .section-profile h3 {
+    color: rgb(97, 97, 97);
   }
   
   .section-profile .section__btn {

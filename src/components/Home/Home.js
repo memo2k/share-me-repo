@@ -1,21 +1,14 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase"
 import { collection, getDocs } from "firebase/firestore"
 
 const Home = () => {
+    const user = useSelector(selectUser);
     const [posts, setPosts] = useState([]);
     const postsCollectionRef = collection(db, "posts");
-    // useEffect(() => {
-    //     db.collection("posts").onSnapshot((snapshot) => 
-    //         setPosts(
-    //             snapshot.docs.map((doc) => ({
-    //                 id: doc.id,
-    //                 data: doc.data(),
-    //             }))
-    //         )
-    //     );
-    // }, []);
 
     useEffect(() => {
          const getPosts = async () => {
@@ -29,8 +22,9 @@ const Home = () => {
     return (
         <section className="section-posts">
             <div className="shell shell--small">
+                {user ? (
                 <div className="section__header">
-                    <h2>Welcome, Pesho</h2>
+                    <h2>Welcome, {user.displayName}</h2>
 
                     <div className="section__nav">
                         <nav className="nav">
@@ -46,6 +40,12 @@ const Home = () => {
                          </nav>
                     </div>
                 </div>
+                ) : (
+                    <div className="section__header">
+                        <h2 className="section__header-nouser">Welcome</h2>
+                    </div>
+                )}
+                
 
                 <div className="section__inner">
                     <div className="section__content">
