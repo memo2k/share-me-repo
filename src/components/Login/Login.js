@@ -3,13 +3,13 @@ import { login, logout, selectUser } from "../../features/userSlice";
 import Home from '../../components/Home/Home';
 import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const user = useSelector(selectUser);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    let errorsObj = { errorMessage: '' };
-    const [errors, setErrors] = useState(errorsObj);
+    const [errors, setErrors] = useState("");
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -18,17 +18,15 @@ const Login = () => {
     }
 
     const handleLogin = () => {
-        let error = false;
-        const errorObj = { ...errorsObj };
-
-        if (!email || !password) {
-            errorObj.errorMessage = "Email or password is invalid!";
-            error = true;
+        if (!email) {
+            return setErrors("Email is invalid.")
         }
 
-        setErrors(errorObj);
+        if (!password) {
+            return setErrors("Password is invalid.")
+        }
 
-        if (!error) {
+        else {
             auth.signInWithEmailAndPassword(email, password)
             .then((userAuth) => {
                 dispatch(login({
@@ -47,7 +45,9 @@ const Login = () => {
                 <div className="form">
                     <div className="form__head">
                         <h2>Login</h2>
-                        {errors.errorMessage && <div>{errors.errorMessage}</div>}
+                        <div className="form__errors">
+                            {errors !== "" ? <div className="error">{errors}</div> : null}
+                        </div>
                     </div>
 
                     <div className="form__body">

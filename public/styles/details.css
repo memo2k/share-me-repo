@@ -1,0 +1,133 @@
+/* ----------------------------------------------------------------- */
+/* Section Details */
+/* ----------------------------------------------------------------- */
+.section-details {
+    padding: 60px 0;
+  }
+
+  .section-details .section__header {
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: 3px solid #00aaff;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+  }
+
+  .section-details h2 {
+    color: #538cc6;
+  }
+
+/* ----------------------------------------------------------------- */
+/* Section Details Post */
+/* ----------------------------------------------------------------- */
+
+.section-details .section__post {
+    color: #000;
+    border: 2px solid lightgray;
+    border-radius: 15px;
+    background-color: #fff;
+    padding-top: 25px;
+}
+
+.section-details .section__post-img img {
+    object-fit: contain;
+    background-color: rgb(51, 56, 70);
+}
+
+.section-details .section__inner-details a {
+    text-decoration: none;
+    color: #000;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 25px;
+}
+
+.section-details .section__inner-details a:hover {
+    color: #00aaff;
+}
+
+.section-details h5 {
+    color: #000;
+    font-family: 'Lexend Deca', sans-serif;
+  }
+
+  .section-details .section__description {
+    margin: 10px 30px;
+  }
+
+  .section-details .section__post-user {
+    margin: 5px 20px;
+    border-bottom: 2px solid lightgray;
+  }
+
+/* ----------------------------------------------------------------- */
+/* Section Details Comments */
+/* ----------------------------------------------------------------- */
+
+.section-details .section__comments {
+    border: 2px solid lightgray;
+    width: 100%;
+    border-radius: 15px;
+    background-color: #fff;
+    overflow-wrap: break-word;
+}
+
+.section-details .section__comments-head {
+    border-bottom: 3px solid #00aaff;
+    border-top: 3px solid #00aaff;
+    padding: 20px 20px 10px;
+}
+
+.section-details ul {
+    list-style-type: none;
+}
+
+/* ----------------------------------------------------------------- */
+/* Section Form Comment */
+/* ----------------------------------------------------------------- */
+.section-form--comment {
+    padding: 25px 20px;
+    position: relative;
+}
+  
+.section-form--comment .field-textarea {
+    width: 100%;
+    height: 50px;
+    padding: 10px 15px;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+/* ----------------------------------------------------------------- */
+/* Section Actions */
+/* ----------------------------------------------------------------- */
+.section-details .section__user-actions {
+  display: flex;
+  margin-top: 20px;
+}
+
+.section-details .section__actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.section-details .section__btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-details .section__btn + .section__btn {
+  margin-left: 15px;
+}

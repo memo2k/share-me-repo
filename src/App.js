@@ -12,6 +12,8 @@ import Register from './components/Register/Register';
 import About from './components/About/About';
 import Create from './components/Create/Create';
 import Profile from './components/Profile/Profile';
+import Details from './components/Details/Details';
+import EditPost from './components/EditPost/EditPost';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +44,8 @@ function App() {
           <Route path="/about" element={<About />}/>
           <Route path="/create" element={<Create />}/>
           <Route path="/profile" element={<Profile />}/>
+          <Route path="/details/:postId" element={<Details />}/>
+          <Route path="/editpost/:postId" element={<EditPost />}/>
         </Routes>
       </div>
 

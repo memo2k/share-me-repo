@@ -9,15 +9,49 @@ const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const dispatch = useDispatch();
+    const [errors, setErrors] = useState("");
+
+    function isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         handleRegister();
     }
     const handleRegister = () => {
-        if (!email || !password) {
-            return alert("Please fill all the fields below.")
+        if (!name && !email && !password) {
+            return setErrors("Please fill all the fields below.");
+        }
+
+        if (!name) {
+            return setErrors("Please enter a username.");
+        }
+
+        if (!email) {
+            return setErrors("Please enter an email.");
+        }
+
+        if (!isValidEmail(email)) {
+            return setErrors("Email is invalid.");
+        }
+
+        // if () {
+        //     return setErrors("Email is already taken.");
+        // }
+
+        if (!password) {
+            return setErrors("Please enter a password.");
+        }
+
+        if (password.length < 6) {
+            return setErrors("Password should be at least 6 characters long.");
+        }
+
+        if (password !== confirmPassword) {
+            return setErrors("Passwords do not match.");
         }
 
         else if (name && email && password !== "") {
@@ -33,7 +67,7 @@ const Register = () => {
                     uid: userAuth.user.uid
                 }))
             })
-            ).catch((err) => alert(err))
+            )
         }
       };
 
@@ -44,6 +78,9 @@ const Register = () => {
                 <div className="form">
                     <div className="form__head">
                         <h2>Register</h2>
+                        <div className="form__errors">
+                            {errors !== "" ? <div className="error">{errors}</div> : null}
+                        </div>
                     </div>
 
                     <div className="form__body">
@@ -75,7 +112,7 @@ const Register = () => {
                             <label htmlFor="rePass" className="form__label">Repeat password</label>
 
                             <div className="form__field">
-                                <input type="password" className="field" id="rePass" />
+                                <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" className="field" id="rePass" />
                             </div>
                         </div>
                     </div>

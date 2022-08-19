@@ -145,6 +145,16 @@ h4 {
     padding: 0 20px;
 }
 
+.grid .grid__col--1of2 {
+    max-width: 50%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
 .grid .grid__col--1of3 {
     max-width: calc(100% / 3);
     -webkit-box-flex: 0;
@@ -167,4 +177,31 @@ h4 {
 
 .grid-no-gutter {
     margin: 0;
+}
+
+/* ----------------------------------------------------------------- */
+/* Error */
+/* ----------------------------------------------------------------- */
+
+.error {
+    width: 100%;
+    background-color: rgb(255, 151, 151);
+    color: white;
+    padding: 10px 0;
+}
+
+/* ----------------------------------------------------------------- */
+/* Comment */
+/* ----------------------------------------------------------------- */
+
+.comment {
+    margin: 20px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.comment .comment__user {
+    margin-bottom: 10px;
+    border-bottom: 2px solid lightgray;
 }

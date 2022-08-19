@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { useEffect, useState } from "react";
@@ -9,6 +9,8 @@ const Home = () => {
     const user = useSelector(selectUser);
     const [posts, setPosts] = useState([]);
     const postsCollectionRef = collection(db, "posts");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
          const getPosts = async () => {
@@ -51,49 +53,21 @@ const Home = () => {
                     <div className="section__content">
                         <div className="posts">
                             <ul>
-                                <li>
-                                    <div className="post">
-                                        <div className="post__content">
-                                            <div className="post__user">
-                                                <Link to="/">Pesho</Link>
-                                            </div>
-
-                                            <div className="post__description">
-                                                <h5>my new puppy</h5>
-                                            </div>
-
-                                            <div className="post__image">
-                                                <img src="images/puppy.jpg" alt="" width="500" height="500"/>
-                                            </div>
-
-                                            <div className="post__buttons">
-                                                <div className="post__likes">
-                                                    <Link to="/">Like</Link>
-                                                    
-                                                    <div className="likes-count">0</div>
-                                                </div>
-
-                                                <Link to="/details" className="btn btn--transparent btn--lowercase details__btn">Details</Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
                                 {posts.map((post) => {
                                     return (
                                         <li>
                                             <div className="post">
                                                 <div className="post__content">
                                                     <div className="post__user">
-                                                        <Link to="/">Pesho</Link>
+                                                        <Link to="/">{post.name}</Link>
                                                     </div>
 
                                                     <div className="post__description">
-                                                        <h5>{post.description}</h5>
+                                                        <h5>HellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHelloooooooooo{post.description}</h5>
                                                     </div>
 
                                                     <div className="post__image">
-                                                        <img src="images/puppy.jpg" alt="" width="500" height="500"/>
+                                                        <img src={post.image} alt="" width="500" height="500"/>
                                                     </div>
 
                                                     <div className="post__buttons">
@@ -103,7 +77,7 @@ const Home = () => {
                                                             <div className="likes-count">0</div>
                                                         </div>
 
-                                                        <Link to="/details" className="btn btn--transparent btn--lowercase details__btn">Details</Link>
+                                                        <Link to={`/details/${post.id}`} className="btn btn--transparent btn--lowercase details__btn">Details</Link>
                                                     </div>
                                                 </div>
                                             </div>
