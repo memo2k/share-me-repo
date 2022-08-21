@@ -4,6 +4,8 @@ import { doPost } from "../../features/actionCreators/postCreator";
 import { selectUser } from "../../features/userSlice";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import Login from '../../components/Login/Login';
+import { serverTimestamp } from "firebase/firestore";
 
 const Create = () => {
     const user = useSelector(selectUser);
@@ -11,27 +13,45 @@ const Create = () => {
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
     const [progress, setProgress] = useState("");
+    const [errors, setErrors] = useState("");
     const navigate = useNavigate();
     
     const createPost = (e) => {
         e.preventDefault();
 
-        const data = {
-            name: user.displayName,
-            description: description,
-            image: ""
+        if (!description) {
+            return setErrors("Please fill the description.");
         }
-    
-        dispatch(doPost(data, image, setProgress))
-        navigate('/');
+
+        if (!image) {
+            return setErrors("Please add an image.");
+        }
+
+        else {
+            const data = {
+                comments: [],
+                name: user.displayName,
+                description: description,
+                image: "",
+                userId: user.uid,
+                timestamp: serverTimestamp()
+            }
+        
+            dispatch(doPost(data, image, setProgress))
+            navigate('/');
+        }
     }
 
     return (
+        !user ? <Login /> : (
         <section className="section-form">
             <form action="">
                 <div className="form-create">
                     <div className="form__head">
                         <h2>Create Post</h2>
+                        <div className="form__errors">
+                            {errors !== "" ? <div className="error">{errors}</div> : null}
+                        </div>
                     </div>
 
                     <div className="form__body">
@@ -58,6 +78,7 @@ const Create = () => {
                 </div>
             </form>
         </section>
+        )
     );
 }
 

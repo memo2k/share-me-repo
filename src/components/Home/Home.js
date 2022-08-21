@@ -8,9 +8,8 @@ import { collection, getDocs } from "firebase/firestore"
 const Home = () => {
     const user = useSelector(selectUser);
     const [posts, setPosts] = useState([]);
-    const postsCollectionRef = collection(db, "posts");
 
-    const navigate = useNavigate();
+    const postsCollectionRef = collection(db, "posts");
 
     useEffect(() => {
          const getPosts = async () => {
@@ -52,39 +51,42 @@ const Home = () => {
                 <div className="section__inner">
                     <div className="section__content">
                         <div className="posts">
-                            <ul>
-                                {posts.map((post) => {
-                                    return (
-                                        <li>
-                                            <div className="post">
-                                                <div className="post__content">
-                                                    <div className="post__user">
-                                                        <Link to="/">{post.name}</Link>
-                                                    </div>
-
-                                                    <div className="post__description">
-                                                        <h5>HellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHellooooooooooHelloooooooooo{post.description}</h5>
-                                                    </div>
-
-                                                    <div className="post__image">
-                                                        <img src={post.image} alt="" width="500" height="500"/>
-                                                    </div>
-
-                                                    <div className="post__buttons">
-                                                        <div className="post__likes">
-                                                            <Link to="/">Like</Link>
-                                                    
-                                                            <div className="likes-count">0</div>
+                            {posts.length > 0 ? (
+                                <ul>
+                                    {posts.map((post, id) => {
+                                        return (
+                                            <li key={id + 100}>
+                                                <div className="post">
+                                                    <div className="post__content">
+                                                        <div className="post__user">
+                                                            <h2>{post.name}</h2>
                                                         </div>
 
-                                                        <Link to={`/details/${post.id}`} className="btn btn--transparent btn--lowercase details__btn">Details</Link>
+                                                        <div className="post__description">
+                                                            <h5>{post.description}</h5>
+                                                        </div>
+
+                                                        <div className="post__image">
+                                                            <img src={post.image} alt="" width="500" height="500"/>
+                                                        </div>
+
+                                                        <div className="post__buttons">
+                                                            {!user ? (
+                                                                <Link to="/login " className="btn btn--transparent btn--lowercase details__btn">Details</Link>
+                                                            ) : (
+                                                            <Link to={`/details/${post.id}`} className="btn btn--transparent btn--lowercase details__btn">Details</Link>
+                                                            )}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            ) : (
+                                <h2>There are no posts yet...</h2>
+                            )}
+                            
                         </div>
                     </div>
                 </div>

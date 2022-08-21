@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 
+
 const Profile = () => {
     const user = useSelector(selectUser);
 
@@ -19,13 +20,6 @@ const Profile = () => {
 
                             <h3>Email: {user.email}</h3>
                         </div>
-                    </div>
-
-
-                    <div className="section__actions">
-                        <Link to="/edit" className="btn btn--transparent btn--lowercase section__btn btn--width-250">Edit</Link>
-
-                        <Link to="/delete" className="btn btn--red btn--lowercase section__btn btn--width-250">Delete Account</Link>
                     </div>
                 </div>
             </div>

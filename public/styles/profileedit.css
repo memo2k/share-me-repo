@@ -1,0 +1,45 @@
+  /* ----------------------------------------------------------------- */
+  /* Form */
+  /* ----------------------------------------------------------------- */
+  .form-edit {
+    padding: 0 30px;
+    background-color: #fff;
+    max-width: 600px;
+    color: #000;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 15px;
+  }
+  
+  .form-edit .form__head {
+    margin-bottom: 30px;
+  }
+  
+  .form-edit .form__body {
+    margin-bottom: 40px;
+  }
+  
+  .form-edit .form__row + .form__row {
+    margin-top: 25px;
+  }
+  
+  .form-edit .form__label {
+    width: 250px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 5px;
+  }
+  
+  .form-edit .field {
+    height: 36px;
+    width: 250px;
+    padding: 0 15px;
+    font-size: 16px;
+  }
+
+  .form-edit .form__errors {
+    width: 330px;
+    margin: 20px auto;
+  }

@@ -11,6 +11,11 @@ const addPost = data => ({
     payload: data,
 });
 
+const addComment = (data) => ({
+    type: types.ADD_COMMENT,
+    payload: data
+});
+
 export const doPost = (data, image, setProgress) => dispatch => {
     db.collection("posts").add(data).then(async res => {
         const document = await res.get();
@@ -29,7 +34,6 @@ export const doPost = (data, image, setProgress) => dispatch => {
             }).then(() => {
                 postData.data.image = url;
                 dispatch(addPost(postData));
-                alert("post created!");
             }).catch((err) => {
                 console.log(err);
             });
@@ -38,4 +42,16 @@ export const doPost = (data, image, setProgress) => dispatch => {
         console.log(err);
     });
 
+}
+
+export const doComment = (comment, postId, prevComments) => dispatch => {
+    const oldComments = prevComments;
+    oldComments.push(comment);
+    db.collection("posts").doc(postId).update({
+        comments: oldComments
+    }).then(() => {
+        dispatch(addComment({comment, postId}))
+    }).catch(err => {
+        console.log(err);
+    })
 }

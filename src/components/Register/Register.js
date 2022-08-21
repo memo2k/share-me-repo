@@ -3,6 +3,7 @@ import { login, selectUser } from "../../features/userSlice";
 import Home from '../../components/Home/Home';
 import { useState } from "react";
 import { auth } from "../../firebase";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Register = () => {
     const user = useSelector(selectUser);
@@ -12,6 +13,7 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const dispatch = useDispatch();
     const [errors, setErrors] = useState("");
+    const navigate = useNavigate();
 
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
@@ -72,7 +74,7 @@ const Register = () => {
       };
 
     return (
-        user ? <Home /> : (
+        user ? navigate('/') : (
         <section className="section-form">
             <form action="">
                 <div className="form">

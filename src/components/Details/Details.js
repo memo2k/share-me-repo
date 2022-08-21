@@ -1,10 +1,20 @@
+import { deleteDoc, doc } from 'firebase/firestore';
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { db } from "../../firebase";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser } from '../../features/userSlice';
+import { doComment } from '../../features/actionCreators/postCreator';
 
 function Details() {
+    const user = useSelector(selectUser);
     const {postId} = useParams();
     const [details, setDetails] = useState({});
+    const [comment, setComment] = useState("");
+    const [errors, setErrors] = useState("");
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     function getDetails() {
         db.collection("posts").doc(postId).get()
@@ -14,6 +24,28 @@ function Details() {
     }
 
     getDetails();
+
+    const handleDelete = async () => {
+        const docRef = doc(db, "posts", postId);
+        await deleteDoc(docRef).then(navigate('/'));
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!comment) {
+            return setErrors("Comment field should not be empty.");
+        }
+
+        const data = {
+            name: user.displayName,
+            comment,
+            userId: user.uid
+        }
+
+        dispatch(doComment(data, postId, details.comments));
+    }
+
     return (
         <section className="section-details">
                 <div className="shell shell--small">
@@ -32,7 +64,7 @@ function Details() {
                                     </div>
 
                                     <div className="section__post-user">
-                                        <Link to="/">{details.name}</Link>
+                                        <h3>{details.name}</h3>
                                     </div>
 
                                     <div className="section__description">
@@ -44,11 +76,14 @@ function Details() {
                             <div className='grid__col grid__col--1of2'>
                                 <div className="section__comments">
                                     <section className='section-form--comment'>
-                                        <form>
+                                        <form onSubmit={handleSubmit}>
+                                            <div className="form__errors">
+                                                {errors !== "" ? <div className="error">{errors}</div> : null}
+                                            </div>
                                             <div className='form-comment'>
                                                 <div className='form__body'>
                                                     <div className='form__field'>
-                                                        <textarea type="text" className="field-textarea" id="comment" placeholder='Comment...'></textarea>
+                                                        <textarea value={comment} onChange={e => setComment(e.target.value)} type="text" className="field-textarea" id="comment" placeholder='Comment...'></textarea>
                                                     </div>
                                                 </div>
 
@@ -64,51 +99,35 @@ function Details() {
                                     </div>
                                     
                                     <ul>
-                                        <li>
-                                            <div className='comment'>
-                                                <div className='comment__user'>
-                                                    <Link to="/">Misho</Link>
-                                                </div>
+                                        {/* {details.comments.length > 0 ? (
+                                            details.comments.map((cmt, id) => 
+                                            <li key={id + 100}>
+                                                <div className='comment'>
+                                                    <div className='comment__user'>
+                                                        <h3>{cmt.name}</h3>
+                                                    </div>
 
-                                                <div className="comment__description">
-                                                    <h5>Helloooooooooo guys</h5>
+                                                    <div className="comment__description">
+                                                        <h5>{cmt.comment}</h5>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div className='comment'>
-                                                <div className='comment__user'>
-                                                    <Link to="/">Misho</Link>
-                                                </div>
-
-                                                <div className="comment__description">
-                                                    <h5>Helloooooooooo guys</h5>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div className='comment'>
-                                                <div className='comment__user'>
-                                                    <Link to="/">Misho</Link>
-                                                </div>
-
-                                                <div className="comment__description">
-                                                    <h5>Helloooooooooo guys</h5>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        )
+                                        ) :
+                                        (
+                                            <div>No comments...</div>
+                                        )} */}
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
+                        { user.uid === details.userId ? (
                         <div className='section__user-actions'>
-                            <Link to="/edit" className="btn btn--transparent btn--lowercase section__btn btn--width-250">Edit</Link>
+                            <Link to={`/editpost/${postId}`} className="btn btn--transparent btn--lowercase section__btn btn--width-250">Edit</Link>
 
-                            <Link to="/delete" className="btn btn--red btn--lowercase section__btn btn--width-250">Delete Post</Link>
-                        </div>
+                            <button onClick={handleDelete} className="btn btn--red btn--lowercase section__btn btn--width-250">Delete Post</button>
+                        </div>) : (
+                            <div></div>)}
                     </div>
                 </div>
         </section>

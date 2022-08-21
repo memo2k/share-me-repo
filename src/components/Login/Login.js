@@ -1,16 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout, selectUser } from "../../features/userSlice";
-import Home from '../../components/Home/Home';
 import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const user = useSelector(selectUser);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState("");
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,10 +37,11 @@ const Login = () => {
                 }))
             });
         }
+        
     }
 
     return (
-        user ? <Home /> : (
+        user ? navigate('/') : (
         <section className="section-form">
             <form action="" onSubmit={handleSubmit}>
                 <div className="form">

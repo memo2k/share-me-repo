@@ -34,8 +34,9 @@ h3 {
 }
 
 h4 {
-    font-size: 22px;
-    color: #fff;
+    font-size: 18px;
+    color: #000;
+    font-family: 'Lexend Deca', sans-serif;
 }
 
 /* ----------------------------------------------------------------- */
@@ -188,6 +189,7 @@ h4 {
     background-color: rgb(255, 151, 151);
     color: white;
     padding: 10px 0;
+    text-align: center;
 }
 
 /* ----------------------------------------------------------------- */
